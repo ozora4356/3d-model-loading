@@ -1,9 +1,10 @@
 "use client";
 
-import { PerspectiveCamera} from "@react-three/drei";
-import { useMemo, useState, useEffect} from "react";
+import { PerspectiveCamera, Html } from "@react-three/drei";
+import { useMemo, useState, useEffect } from "react";
 import HeroModel from "./HeroModel";
 import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
 
 const BREAKPOINTS = {
   MOBILE: 768, // モバイル用ブレークポイント
@@ -86,7 +87,15 @@ const HeroExperience = () => {
         powerPreference: "high-performance",
       }}
     >
+      <Suspense
+        fallback={
+          <Html>
+            <div>Loading...</div>
+          </Html>
+        }
+      >
         <Scene />
+      </Suspense>
     </Canvas>
   );
 };
